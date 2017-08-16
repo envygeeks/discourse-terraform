@@ -9,7 +9,15 @@ A Terraform project to launch Discourse in the cloud.
 ssh-keygen -t rsa -b 4096 -f keys/deploy.key
 ```
 
-#### 2. Adjust your variables
+#### 2. Add your personal public key to `keys/`
+
+***The following assumes you use a Yubikey to store your SSH keys on separate hardware, if you do not, switch `cardno:<serial>` with your email and it will extract your key.***
+
+```
+ssh-add -L cardno:<Serial> > keys/user.pub
+```
+
+#### 3. Adjust your variables
 
 ***Inside of `vars.tf` there are a bunch of variables you can customize, some of them, however, are required.  You can set those with `terraform.tfvars`.***
 
@@ -21,7 +29,7 @@ discourse_smtp_password="myPassword"
 db_password = "myPassword"
 ```
 
-#### 3. Verify Your Plan
+#### 4. Verify Your Plan
 
 First you should review and make sure everything looks okay, never randomly launch instances without first reviewing.  One of the golden rules of systems.
 
@@ -30,7 +38,7 @@ terraform plan -var="secret_key=$AWS_SECRET_KEY" \
   -var="access_key=$AWS_ACCESS_KEY"
 ```
 
-#### 4. Launch Your Plan
+#### 5. Launch Your Plan
 
 After reviewing you can launch the instances
 
