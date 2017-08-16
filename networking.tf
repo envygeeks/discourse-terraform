@@ -8,7 +8,7 @@ resource "aws_vpc" "discourse" {
 
 # --
 # This is a small cluster, there is no need to get crazy
-#   with our allocations, each subnet gets 31 hosts, calculated
+#   with our allocations, each subnet gets 255 hosts, calculated
 #   we can always increase it later if we need.
 # --
 resource "aws_subnet" "discourse-a" {
