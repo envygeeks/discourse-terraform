@@ -14,8 +14,9 @@ resource "aws_key_pair" "discourse_deploy" {
 
 # --
 resource "aws_security_group" "discourse_public" {
-  vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_public"
+  vpc_id = "${aws_vpc.discourse.id}"
+  description = "${var.slug}"
 
   ingress {
     from_port = 1
@@ -34,11 +35,18 @@ resource "aws_security_group" "discourse_public" {
       "0.0.0.0/0"
     ]
   }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 
 # --
 resource "aws_security_group" "discourse_ssh" {
+  description = "${var.slug}"
   vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_ssh"
 
@@ -64,10 +72,17 @@ resource "aws_security_group" "discourse_ssh" {
       "0.0.0.0/0"
     ]
   }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
 resource "aws_security_group" "discourse_http" {
+  description = "${var.slug}"
   vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_http"
 
@@ -97,10 +112,17 @@ resource "aws_security_group" "discourse_http" {
       "0.0.0.0/0"
     ]
   }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
 resource "aws_security_group" "discourse_internal" {
+  description = "${var.slug}"
   vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_private"
 
@@ -142,12 +164,19 @@ resource "aws_security_group" "discourse_internal" {
       "0.0.0.0/0"
     ]
   }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
 resource "aws_security_group" "discourse_internal_http" {
   vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_internal_http"
+  description = "${var.slug}"
 
   ingress {
     from_port = 443
@@ -176,5 +205,11 @@ resource "aws_security_group" "discourse_internal_http" {
     cidr_blocks = [
       "0.0.0.0/0"
     ]
+  }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 }

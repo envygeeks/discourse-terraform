@@ -13,7 +13,8 @@ resource "aws_instance" "discourse-1" {
 
   tags {
     Name = "${var.slug}"
-    role = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 
   root_block_device {
@@ -133,6 +134,12 @@ resource "aws_elasticache_cluster" "discourse" {
   security_group_ids = [
     "${aws_security_group.discourse_internal.id}"
   ]
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
@@ -162,6 +169,12 @@ resource "aws_db_instance" "discourse" {
   vpc_security_group_ids = [
     "${aws_security_group.discourse_internal.id}"
   ]
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 resource "aws_elb" "discourse-1" {
@@ -189,7 +202,12 @@ resource "aws_elb" "discourse-1" {
     timeout = 4
   }
 
-  # --
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
+
   provisioner "local-exec" {
     command = "echo ${aws_elb.discourse-1.dns_name} > elb.txt"
   }

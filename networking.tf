@@ -3,6 +3,8 @@ resource "aws_vpc" "discourse" {
   cidr_block = "10.0.0.0/16"
   tags {
     Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 }
 
@@ -18,6 +20,8 @@ resource "aws_subnet" "discourse-a" {
 
   tags {
     Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 }
 
@@ -29,6 +33,8 @@ resource "aws_subnet" "discourse-b" {
 
   tags {
     Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 }
 
@@ -40,6 +46,12 @@ resource "aws_route_table" "discourse" {
     gateway_id = "${
       aws_internet_gateway.discourse.id
     }"
+  }
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
   }
 }
 
@@ -56,15 +68,28 @@ resource "aws_internet_gateway" "discourse" {
   vpc_id = "${
     aws_vpc.discourse.id
   }"
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
 resource "aws_db_subnet_group" "discourse" {
+  description = "${var.slug}"
   name = "${var.slug}"
   subnet_ids = [
     "${aws_subnet.discourse-a.id}",
     "${aws_subnet.discourse-b.id}"
   ]
+
+  tags {
+    Name = "${var.slug}"
+    Description = "${var.slug}"
+    Stack = "${var.slug}"
+  }
 }
 
 # --
