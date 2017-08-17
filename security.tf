@@ -147,7 +147,7 @@ resource "aws_security_group" "discourse_internal" {
 # --
 resource "aws_security_group" "discourse_internal_http" {
   vpc_id = "${aws_vpc.discourse.id}"
-  name = "${var.slug}_http"
+  name = "${var.slug}_internal_http"
 
   ingress {
     from_port = 443
