@@ -177,7 +177,7 @@ resource "aws_db_instance" "discourse" {
   }
 }
 
-resource "aws_alb" "discourse_1" {
+resource "aws_elb" "discourse_1" {
   name = "${var.slug}"
   cross_zone_load_balancing = true
   subnets = [ "${aws_subnet.discourse_a.id}", "${aws_subnet.discourse_b.id}" ]
