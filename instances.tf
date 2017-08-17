@@ -1,7 +1,7 @@
 resource "aws_instance" "discourse-1" {
   associate_public_ip_address = true
   instance_type = "${var.ec2_instance_type}"
-  key_name = "${aws_key_pair.discourse_terraform.key_name}"
+  key_name = "${aws_key_pair.discourse_deploy.key_name}"
   subnet_id = "${aws_subnet.discourse-a.id}"
   availability_zone = "${var.zone-a}"
   ami = "${var.ec2_ami}"
