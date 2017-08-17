@@ -176,6 +176,6 @@ resource "aws_elb" "discourse-1" {
 
   # --
   provisioner "local-exec" {
-    command = "echo ${aws_elb.discourse-1.public_dns} > elb.txt",
+    command = "echo ${aws_elb.discourse-1.dns_name} > elb.txt",
   }
 }
