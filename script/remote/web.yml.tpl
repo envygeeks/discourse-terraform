@@ -3,13 +3,8 @@ templates:
   - "templates/web.template.yml"
 expose:
   - "80:80"
-links:
-  - link:
-      name: data
-      alias: data
 env:
   LANG: en_US.UTF-8
-  #DISCOURSE_CDN_URL: //discourse-cdn.example.com
   DISCOURSE_SMTP_PORT: "${discourse_smtp_port}"
   DISCOURSE_REDIS_HOST: "${discourse_redis_host}"
   DISCOURSE_SMTP_ADDRESS: "${discourse_smtp_address}"
