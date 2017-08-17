@@ -26,7 +26,15 @@ script/keygen
 ssh-add -L cardno:<Serial> > keys/user.pub
 ```
 
-#### 4. Adjust your variables
+#### 4. Init your Terraform
+
+This is an important step since we need both the AWS plugin, as well as the Template plugin so that we can build out your infrastructure.
+
+```
+terraform init
+```
+
+#### 5. Adjust your variables
 
 ***Inside of `vars.tf` there are a bunch of variables you can customize, some of them, however, are required.  You can set those with `terraform.tfvars`.***
 
@@ -38,7 +46,7 @@ discourse_smtp_password="myPassword"
 db_password = "myPassword"
 ```
 
-#### 5. Verify Your Plan
+#### 6. Verify Your Plan
 
 First you should review and make sure everything looks okay, never randomly launch instances without first reviewing.  One of the golden rules of systems.
 
@@ -46,7 +54,7 @@ First you should review and make sure everything looks okay, never randomly laun
 script/plan
 ```
 
-#### 6. Launch Your Plan
+#### 7. Launch Your Plan
 
 After reviewing you can launch the instances
 
