@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ssh-keygen -t rsa -b 4096 -f keys/deploy.key
-mv keys/deploy.pub.key keys/deploy.pub
+mv keys/deploy.key.pub keys/deploy.pub
