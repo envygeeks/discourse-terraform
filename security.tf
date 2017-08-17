@@ -5,7 +5,7 @@ resource "aws_key_pair" "discourse_user" {
   }"
 }
 
-resource "aws_key_pair" "discourse_terraform" {
+resource "aws_key_pair" "discourse_deploy" {
   key_name = "discourse_terraform"
   public_key = "${
     file("keys/deploy.pub")
