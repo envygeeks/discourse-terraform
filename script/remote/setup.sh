@@ -23,5 +23,5 @@ cp ~/web.yml /opt/discourse/containers/web.yml
 rm -rf ~/setup.sh ~/web.yml
 
 cd /opt/discourse
-./launcher bootstrap app
-./launcher start app
+sudo ./launcher bootstrap app
+sudo ./launcher start app
