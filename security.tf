@@ -76,7 +76,7 @@ resource "aws_security_group" "discourse_http" {
     protocol = "TCP"
     to_port = 443
     cidr_blocks = [
-      "${var.ssh}"
+      "0.0.0.0/0"
     ]
   }
 
@@ -85,7 +85,7 @@ resource "aws_security_group" "discourse_http" {
     protocol = "TCP"
     to_port = 80
     cidr_blocks = [
-      "${var.ssh}"
+      "0.0.0.0/0"
     ]
   }
 
