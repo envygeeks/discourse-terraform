@@ -1,3 +1,4 @@
+/*.tfplan
 /*.tfstate
 /keys/*.key
 /*.tfstate.backup
