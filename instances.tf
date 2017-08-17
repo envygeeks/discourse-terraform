@@ -153,7 +153,7 @@ resource "aws_db_instance" "discourse" {
   password = "${var.db_password}"
   skip_final_snapshot = true
   engine_version  = "9.6.3"
-  allocated_storage = 1
+  allocated_storage = 6
   engine = "postgres"
   name = "discourse"
   multi_az = false
