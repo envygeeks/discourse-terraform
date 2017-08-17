@@ -21,7 +21,7 @@ variable "discourse_smtp_password" {}
 variable "discourse_hostname" {}
 
 data "template_file"  "discourse" {
-  template = "${file("script/remote/web.yml.tpl")}"
+  template = "${file("templates/remote/web.yml.tpl")}"
 
   vars {
     discourse_smtp_port = "${var.discourse_smtp_port}",
