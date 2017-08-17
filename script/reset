@@ -1,8 +1,0 @@
-#!/bin/bash
-
-script/destroy
-rm -f terraform.tfstate
-rm -f terraform.tfstate.backup
-rm -rf terraform.tfplan
-rm -fr .terraform
-terraform init

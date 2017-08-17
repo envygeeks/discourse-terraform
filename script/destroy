@@ -1,5 +1,0 @@
-#!/bin/bash
-set -e
-
-terraform destroy -var="secret_key=$AWS_SECRET_KEY" \
-  -var="access_key=$AWS_ACCESS_KEY"
