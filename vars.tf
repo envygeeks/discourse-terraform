@@ -9,8 +9,8 @@ variable "rds_instance_type" { default = "db.t2.micro" }
 variable "elasticache_instance_type" { default = "cache.t2.micro" }
 variable "ec2_instance_type" { default = "t2.medium" }
 variable "ec2_ami" { default = "ami-dbbd9dbe" }
-variable "zone-a" { default = "us-east-2b" }
-variable "zone-b" { default = "us-east-2c" }
+variable "zone_a" { default = "us-east-2b" }
+variable "zone_b" { default = "us-east-2c" }
 variable "slug" { default = "discourse" }
 
 variable "discourse_smtp_username" {}

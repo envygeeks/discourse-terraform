@@ -13,9 +13,9 @@ resource "aws_vpc" "discourse" {
 #   with our allocations, each subnet gets 255 hosts, calculated
 #   we can always increase it later if we need.
 # --
-resource "aws_subnet" "discourse-a" {
+resource "aws_subnet" "discourse_a" {
   vpc_id = "${aws_vpc.discourse.id}"
-  availability_zone = "${var.zone-a}"
+  availability_zone = "${var.zone_a}"
   cidr_block = "10.0.0.0/24"
 
   tags {
@@ -26,9 +26,9 @@ resource "aws_subnet" "discourse-a" {
 }
 
 # --
-resource "aws_subnet" "discourse-b" {
+resource "aws_subnet" "discourse_b" {
   vpc_id = "${aws_vpc.discourse.id}"
-  availability_zone = "${var.zone-b}"
+  availability_zone = "${var.zone_b}"
   cidr_block = "10.0.1.0/24"
 
   tags {
@@ -59,7 +59,7 @@ resource "aws_route_table" "discourse" {
 resource "aws_route_table_association" "discourse" {
   route_table_id = "${aws_route_table.discourse.id}"
   subnet_id = "${
-    aws_subnet.discourse-a.id
+    aws_subnet.discourse_a.id
   }"
 }
 
@@ -81,8 +81,8 @@ resource "aws_db_subnet_group" "discourse" {
   description = "${var.slug}"
   name = "${var.slug}"
   subnet_ids = [
-    "${aws_subnet.discourse-a.id}",
-    "${aws_subnet.discourse-b.id}"
+    "${aws_subnet.discourse_a.id}",
+    "${aws_subnet.discourse_b.id}"
   ]
 
   tags {
@@ -96,7 +96,7 @@ resource "aws_db_subnet_group" "discourse" {
 resource "aws_elasticache_subnet_group" "discourse" {
   name = "${var.slug}"
   subnet_ids = [
-    "${aws_subnet.discourse-a.id}",
-    "${aws_subnet.discourse-b.id}"
+    "${aws_subnet.discourse_a.id}",
+    "${aws_subnet.discourse_b.id}"
   ]
 }

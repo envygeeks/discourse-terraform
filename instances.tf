@@ -1,9 +1,9 @@
-resource "aws_instance" "discourse-1" {
+resource "aws_instance" "discourse_1" {
   associate_public_ip_address = true
   instance_type = "${var.ec2_instance_type}"
   key_name = "${aws_key_pair.discourse_deploy.key_name}"
-  subnet_id = "${aws_subnet.discourse-a.id}"
-  availability_zone = "${var.zone-a}"
+  subnet_id = "${aws_subnet.discourse_a.id}"
+  availability_zone = "${var.zone_a}"
   ami = "${var.ec2_ami}"
 
   vpc_security_group_ids = [
@@ -38,7 +38,7 @@ resource "aws_instance" "discourse-1" {
   # @example ssh ubuntu@$(cat ec2.txt)
   # --
   provisioner "local-exec" {
-    command = "echo ${aws_instance.discourse-1.public_dns} > ec2.txt"
+    command = "echo ${aws_instance.discourse_1.public_dns} > ec2.txt"
   }
 
   # --
@@ -149,7 +149,7 @@ resource "aws_db_instance" "discourse" {
   publicly_accessible = false
   db_subnet_group_name = "${aws_db_subnet_group.discourse.id}"
   instance_class = "${var.rds_instance_type}"
-  availability_zone = "${var.zone-a}"
+  availability_zone = "${var.zone_a}"
   password = "${var.db_password}"
   skip_final_snapshot = true
   engine_version  = "9.6.3"
@@ -177,12 +177,12 @@ resource "aws_db_instance" "discourse" {
   }
 }
 
-resource "aws_elb" "discourse-1" {
+resource "aws_elb" "discourse_1" {
   name = "${var.slug}"
   cross_zone_load_balancing = true
-  subnets = [ "${aws_subnet.discourse-a.id}", "${aws_subnet.discourse-b.id}" ]
+  subnets = [ "${aws_subnet.discourse_a.id}", "${aws_subnet.discourse_b.id}" ]
   security_groups = [ "${aws_security_group.discourse_http.id}" ]
-  instances = ["${aws_instance.discourse-1.id}"]
+  instances = ["${aws_instance.discourse_1.id}"]
   connection_draining_timeout = 400
   connection_draining = true
   idle_timeout = 400
@@ -209,6 +209,6 @@ resource "aws_elb" "discourse-1" {
   }
 
   provisioner "local-exec" {
-    command = "echo ${aws_elb.discourse-1.dns_name} > elb.txt"
+    command = "echo ${aws_elb.discourse_1.dns_name} > elb.txt"
   }
 }
