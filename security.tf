@@ -100,7 +100,7 @@ resource "aws_security_group" "discourse_http" {
 }
 
 # --
-resource "aws_security_group" "discourse_private" {
+resource "aws_security_group" "discourse_internal" {
   vpc_id = "${aws_vpc.discourse.id}"
   name = "${var.slug}_private"
 

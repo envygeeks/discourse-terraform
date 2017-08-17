@@ -115,7 +115,7 @@ resource "aws_elasticache_cluster" "discourse" {
   port = 11211
 
   security_group_ids = [
-    "${aws_security_group.discourse_private.id}"
+    "${aws_security_group.discourse_internal.id}"
   ]
 }
 
@@ -144,7 +144,7 @@ resource "aws_db_instance" "discourse" {
   # --
 
   vpc_security_group_ids = [
-    "${aws_security_group.discourse_private.id}"
+    "${aws_security_group.discourse_internal.id}"
   ]
 }
 
