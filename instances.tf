@@ -21,6 +21,16 @@ resource "aws_instance" "discourse-1" {
   }
 
   # --
+  # We create a high timeout so that Discourse has time
+  #   to setup, without us shutting it down.  Since these
+  #   are going on the t2 tier, steal time can be a real
+  #   problem when you first boot onto a cluster.
+  # --
+  timeouts {
+    create = 30
+  }
+
+  # --
   # We use agent=false because
   #   1.) It doesn't support SSH-Agent proper, Yubikey fails.
   #   2.) If you use a file there is a bug: hashicorp/terraform#2983
