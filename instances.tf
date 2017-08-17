@@ -8,7 +8,7 @@ resource "aws_instance" "discourse-1" {
 
   vpc_security_group_ids = [
     "${aws_security_group.discourse_ssh.id}",
-    "${aws_security_group.discourse_internal_http}"
+    "${aws_security_group.discourse_internal_http.id}"
   ]
 
   tags {
