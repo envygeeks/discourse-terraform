@@ -21,3 +21,7 @@ sudo mkdir -p /opt/discourse && sudo chown ubuntu.ubuntu /opt/discourse
 git clone https://github.com/discourse/discourse_docker.git /opt/discourse
 cp ~/web.yml /opt/discourse/containers/web.yml
 rm -rf ~/setup.sh ~/web.yml
+
+cd /opt/discourse
+./launcher bootstrap app
+./launcher start app
