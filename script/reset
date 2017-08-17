@@ -1,5 +1,6 @@
-#!/bin/bash -l
+#!/bin/bash
 
+script/destroy
 rm -f terraform.tfstate
 rm -f terraform.tfstate.backup
 rm -rf terraform.tfplan

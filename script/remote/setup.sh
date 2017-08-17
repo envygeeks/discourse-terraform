@@ -1,4 +1,5 @@
-#!/bin/bash -l
+#!/bin/bash
+set -e
 
 sudo apt-get update && sudo apt-get dist-upgrade \
   -o Dpkg::Options::="--force-confdef" \

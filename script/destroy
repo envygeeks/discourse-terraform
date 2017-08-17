@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash
 set -e
 
 terraform destroy -var="secret_key=$AWS_SECRET_KEY" \
