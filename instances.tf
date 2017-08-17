@@ -27,7 +27,17 @@ resource "aws_instance" "discourse-1" {
   #   problem when you first boot onto a cluster.
   # --
   timeouts {
-    create = 30
+    create = "30m"
+  }
+
+  # --
+  # Do this early so that if there is a problem then you
+  #   can SSH into the instance as everything is going wrong
+  #   and figure it out while it's happening.
+  # @example ssh ubuntu@$(cat ec2.txt)
+  # --
+  provisioner "local-exec" {
+    command = "echo ${aws_instance.discourse-1.public_dns} > ec2.txt"
   }
 
   # --
@@ -109,11 +119,6 @@ resource "aws_instance" "discourse-1" {
       "bash ~/setup.sh"
     ]
   }
-
-  # --
-  provisioner "local-exec" {
-    command = "echo ${aws_instance.discourse-1.public_dns} > ec2.txt",
-  }
 }
 
 # --
@@ -186,6 +191,6 @@ resource "aws_elb" "discourse-1" {
 
   # --
   provisioner "local-exec" {
-    command = "echo ${aws_elb.discourse-1.dns_name} > elb.txt",
+    command = "echo ${aws_elb.discourse-1.dns_name} > elb.txt"
   }
 }
