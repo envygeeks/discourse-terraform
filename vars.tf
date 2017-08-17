@@ -1,7 +1,3 @@
-variable "secret_key" {}
-variable "db_password" {}
-variable "access_key" {}
-
 variable "vpc_cidr" { default = [""] }
 variable "ssh" { default = ["0.0.0.0/0"] }
 variable "region" { default = "us-east-2" }
@@ -12,6 +8,7 @@ variable "ec2_ami" { default = "ami-dbbd9dbe" }
 variable "zone_a" { default = "us-east-2b" }
 variable "zone_b" { default = "us-east-2c" }
 variable "slug" { default = "discourse" }
+variable "db_password" {}
 
 variable "discourse_smtp_username" {}
 variable "discourse_smtp_port" { default="587" }
