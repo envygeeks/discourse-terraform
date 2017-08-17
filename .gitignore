@@ -3,6 +3,8 @@
 /keys/*.key
 /*.tfstate.backup
 /.terraform.tfstate.lock.info
+/keys/ssl.key
+/keys/ssl.crt
 /.terraform
 /*.tfvars
 /ec2.txt
