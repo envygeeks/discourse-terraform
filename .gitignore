@@ -4,3 +4,5 @@
 /.terraform.tfstate.lock.info
 /.terraform
 /*.tfvars
+/ec2.txt
+/elb.txt

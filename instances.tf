@@ -102,7 +102,7 @@ resource "aws_instance" "discourse-1" {
 
   # --
   provisioner "local-exec" {
-    command = "echo ${aws_instance.discourse-1.public_dns}"
+    command = "echo ${aws_instance.discourse-1.public_dns} > ec2.txt",
   }
 }
 
@@ -172,5 +172,10 @@ resource "aws_elb" "discourse-1" {
     target = "HTTP:80/"
     interval = 12
     timeout = 4
+  }
+
+  # --
+  provisioner "local-exec" {
+    command = "echo ${aws_elb.discourse-1.public_dns} > elb.txt",
   }
 }
