@@ -18,7 +18,7 @@ resource "aws_instance" "discourse_1" {
   }
 
   root_block_device {
-    volume_size = "48"
+    volume_size = "12"
   }
 
   # --
