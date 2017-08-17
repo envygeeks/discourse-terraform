@@ -23,10 +23,10 @@ env:
 # --
 volumes:
   - volume:
-      host: /opt/discourse/shared/web-only
+      host: /opt/discourse/shared/web
       guest: /shared
   - volume:
-      host: /opt/discourse/shared/web-only/log/var-log
+      host: /opt/discourse/shared/web/log/var-log
       guest: /var/log
 hooks:
   after_code:
