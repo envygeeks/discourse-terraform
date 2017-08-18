@@ -79,8 +79,8 @@ resource "aws_instance" "discourse_1" {
 
   # --
   provisioner "file" {
-    destination = "~/setup.sh"
-    source = "script/remote/setup.sh"
+    content = "${data.template_file.discourse.rendered}"
+    destination = "~/web.yml"
     connection {
       agent = false
       user = "ubuntu"
@@ -93,8 +93,8 @@ resource "aws_instance" "discourse_1" {
 
   # --
   provisioner "file" {
-    content = "${data.template_file.discourse.rendered}"
-    destination = "~/web.yml"
+    content = "${data.template_file.docker.rendered}"
+    destination = "~/daemon.json"
     connection {
       agent = false
       user = "ubuntu"
@@ -117,7 +117,43 @@ resource "aws_instance" "discourse_1" {
     }
 
     inline = [
-      "bash ~/setup.sh"
+      <<-BASH
+        sudo apt-get update && sudo apt-get dist-upgrade \
+          -o Dpkg::Options::="--force-confdef" \
+          -o Dpkg::Options::="--force-confold" \
+          --assume-yes
+      BASH
+      ,
+
+      <<-BASH
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo apt-key fingerprint 0EBFCD88
+
+        repo=https://download.docker.com/linux/ubuntu
+        sudo add-apt-repository "deb [arch=amd64] $repo $(lsb_release -cs) stable"
+        sudo apt-get update && sudo apt-get install docker-ce -y \
+          --no-install-recommends
+      BASH
+      ,
+
+      <<-BASH
+        sudo mkdir -p /opt/discourse
+        sudo chown ubuntu.ubuntu /opt/discourse
+        git clone https://github.com/discourse/discourse_docker.git /opt/discourse
+        mv ~/web.yml /opt/discourse/containers/web.yml
+      BASH
+      ,
+
+      <<-BASH
+        sudo mv ~/daemon.json /etc/docker/daemon.json
+      BASH
+      ,
+
+      <<-BASH
+        cd /opt/discourse
+        sudo ./launcher bootstrap web
+        sudo ./launcher start web
+      BASH
     ]
   }
 }

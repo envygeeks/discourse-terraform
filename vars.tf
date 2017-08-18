@@ -35,3 +35,10 @@ data "template_file"  "discourse" {
     discourse_hostname = "${var.discourse_hostname}"
   }
 }
+
+data "template_file" "docker" {
+  template = "${file("templates/remote/daemon.json.tpl")}"
+  vars {
+    zone = "${var.zone_a}"
+  }
+}
