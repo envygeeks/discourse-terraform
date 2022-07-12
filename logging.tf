@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_log_group" "discourse" {
   name = "${var.slug}"
 
-  tags {
+  tags = {
     Stack = "${var.slug}"
     Environment = "production"
     Description = "${var.slug}"

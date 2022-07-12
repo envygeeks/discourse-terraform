@@ -36,7 +36,7 @@ resource "aws_security_group" "discourse_public" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -73,7 +73,7 @@ resource "aws_security_group" "discourse_ssh" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -113,7 +113,7 @@ resource "aws_security_group" "discourse_http" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -165,7 +165,7 @@ resource "aws_security_group" "discourse_internal" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -207,7 +207,7 @@ resource "aws_security_group" "discourse_internal_http" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"

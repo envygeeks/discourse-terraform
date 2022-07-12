@@ -20,7 +20,7 @@ variable "discourse_hostname" {}
 data "template_file"  "discourse" {
   template = "${file("templates/remote/web.yml.tpl")}"
 
-  vars {
+  vars = {
     discourse_smtp_port = "${var.discourse_smtp_port}",
     discourse_smtp_username = "${var.discourse_smtp_username}",
     discourse_redis_port = "${aws_elasticache_cluster.discourse.port}",
@@ -38,7 +38,7 @@ data "template_file"  "discourse" {
 
 data "template_file" "docker" {
   template = "${file("templates/remote/daemon.json.tpl")}"
-  vars {
+  vars = {
     zone = "${var.zone_a}"
   }
 }

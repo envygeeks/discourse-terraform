@@ -11,7 +11,7 @@ resource "aws_instance" "discourse_1" {
     "${aws_security_group.discourse_internal_http.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -171,7 +171,7 @@ resource "aws_elasticache_cluster" "discourse" {
     "${aws_security_group.discourse_internal.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -206,7 +206,7 @@ resource "aws_db_instance" "discourse" {
     "${aws_security_group.discourse_internal.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -238,7 +238,7 @@ resource "aws_elb" "discourse_1" {
     timeout = 4
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"

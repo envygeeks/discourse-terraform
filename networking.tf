@@ -1,7 +1,7 @@
 resource "aws_vpc" "discourse" {
   enable_dns_hostnames = true
   cidr_block = "10.0.0.0/16"
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -18,7 +18,7 @@ resource "aws_subnet" "discourse_a" {
   availability_zone = "${var.zone_a}"
   cidr_block = "10.0.0.0/24"
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -31,7 +31,7 @@ resource "aws_subnet" "discourse_b" {
   availability_zone = "${var.zone_b}"
   cidr_block = "10.0.1.0/24"
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -48,7 +48,7 @@ resource "aws_route_table" "discourse" {
     }"
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -69,7 +69,7 @@ resource "aws_internet_gateway" "discourse" {
     aws_vpc.discourse.id
   }"
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -85,7 +85,7 @@ resource "aws_db_subnet_group" "discourse" {
     "${aws_subnet.discourse_b.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
