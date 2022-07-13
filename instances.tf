@@ -196,7 +196,7 @@ resource "aws_db_instance" "discourse" {
   engine_version  = "9.6.3"
   allocated_storage = 6
   engine = "postgres"
-  name = "discourse"
+  db_name = "discourse"
   multi_az = false
 
   # --
