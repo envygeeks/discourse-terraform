@@ -36,7 +36,7 @@ resource "aws_security_group" "discourse_public" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -59,9 +59,7 @@ resource "aws_security_group" "discourse_ssh" {
     from_port = 22
     protocol = "TCP"
     to_port = 22
-    cidr_blocks = [
-      "${var.ssh}"
-    ]
+    cidr_blocks = "${var.ssh}"
   }
 
   egress {
@@ -73,7 +71,7 @@ resource "aws_security_group" "discourse_ssh" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -113,7 +111,7 @@ resource "aws_security_group" "discourse_http" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -165,7 +163,7 @@ resource "aws_security_group" "discourse_internal" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -207,7 +205,7 @@ resource "aws_security_group" "discourse_internal_http" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"

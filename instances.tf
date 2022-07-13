@@ -11,7 +11,7 @@ resource "aws_instance" "discourse_1" {
     "${aws_security_group.discourse_internal_http.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -55,6 +55,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -67,6 +68,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -85,6 +87,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -99,6 +102,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -111,6 +115,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -171,7 +176,7 @@ resource "aws_elasticache_cluster" "discourse" {
     "${aws_security_group.discourse_internal.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -191,7 +196,7 @@ resource "aws_db_instance" "discourse" {
   engine_version  = "9.6.3"
   allocated_storage = 6
   engine = "postgres"
-  name = "discourse"
+  db_name = "discourse"
   multi_az = false
 
   # --
@@ -206,7 +211,7 @@ resource "aws_db_instance" "discourse" {
     "${aws_security_group.discourse_internal.id}"
   ]
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
@@ -238,7 +243,7 @@ resource "aws_elb" "discourse_1" {
     timeout = 4
   }
 
-  tags {
+  tags = {
     Name = "${var.slug}"
     Description = "${var.slug}"
     Stack = "${var.slug}"
