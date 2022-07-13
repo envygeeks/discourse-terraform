@@ -55,6 +55,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -67,6 +68,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -85,6 +87,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -99,6 +102,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
@@ -111,6 +115,7 @@ resource "aws_instance" "discourse_1" {
       agent = false
       user = "ubuntu"
       type = "ssh"
+      host = self.public_ip
       private_key = "${
         file("keys/deploy.key")
       }"
